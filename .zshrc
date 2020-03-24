@@ -14,7 +14,7 @@ zplug "robbyrussell/oh-my-zsh", use:"lib/history.zsh"
 zplug "robbyrussell/oh-my-zsh", use:"lib/completion.zsh"
 zplug "plugins/command-not-found",   from:oh-my-zsh
 zplug "plugins/autojump",            from:oh-my-zsh
-zplug "plugins/zsh-autosuggestions", from:oh-my-zsh
+zplug "zsh-users/zsh-autosuggestions"
 zplug "supercrabtree/k"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
