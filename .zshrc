@@ -1,30 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-#fi
-# Set up the prompt
-#setopt auto_cd
-#source ~/.zplug/init.zsh
-
-#zplug "robbyrussell/oh-my-zsh", use:"lib/key-bindings.zsh"
-#zplug "robbyrussell/oh-my-zsh", use:"lib/directories.zsh"
-#zplug "robbyrussell/oh-my-zsh", use:"lib/history.zsh"
-#zplug "robbyrussell/oh-my-zsh", use:"lib/completion.zsh"
-#zplug "plugins/command-not-found",   from:oh-my-zsh
-#zplug "plugins/autojump",            from:oh-my-zsh
-#zplug "zsh-users/zsh-autosuggestions"
-#zplug "supercrabtree/k"
-#zplug "zsh-users/zsh-syntax-highlighting", defer:2
-
-# Load theme file
-#zplug romkatv/powerlevel10k, as:theme, depth:1
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
-
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -40,7 +19,6 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
 
 export PATH="$HOME/.poetry/bin:$PATH"
 
@@ -69,3 +47,21 @@ zinit light-mode for \
 
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
+zinit snippet OMZ::lib/history.zsh
+zinit snippet OMZ::lib/directories.zsh
+zinit snippet OMZ::lib/key-bindings.zsh
+zinit snippet OMZ::lib/completion.zsh
+
+zinit snippet OMZ::plugins/command-not-found/command-not-found.plugin.zsh
+zinit snippet OMZ::plugins/autojump/autojump.plugin.zsh
+
+zinit wait lucid for \
+ atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting \
+ blockf \
+    zsh-users/zsh-completions \
+ atload"!_zsh_autosuggest_start" \
+    zsh-users/zsh-autosuggestions
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
